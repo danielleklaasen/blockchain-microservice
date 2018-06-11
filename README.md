@@ -1,9 +1,6 @@
-# Microservice starter in NodeJS & Typescript
+# Blockchain Microservice
 
-This is a Serverless (micro)service starter to kickstart your Express / Typescript project.
-
-To learn how to set up a Serverless project, take a look at the [tutorial]() I wrote on Medium.
-The rest of the project is inspired by the [TypeScript-Node-Starter](https://github.com/Microsoft/TypeScript-Node-Starter) by Microsoft.
+This is a Serverless microservice project to store data using Blockchain technology, in order to increase data integrity.
 
 ## Getting Started
 
@@ -39,16 +36,6 @@ $ git clone https://github.com/danielleklaasen/microservice-starter
 $ cd microservice-starter
 $ npm i
 ```
-
-- Configure Serverless with your own AWS account. You can find instruction on how to make an account [here]().
-
-```
-$ serverless config credentials --provider aws --key ACCESS-KEY-ID --secret SECRET-ACCESS-KEY
-```
-
-- Configure MongoDB
-
-Add your personal url in the .env file.
 
 - Build and run the project
 

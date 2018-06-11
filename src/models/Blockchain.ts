@@ -1,6 +1,7 @@
 import { sha256 } from 'js-sha256';
 import { IBlock } from '../types/types';
 import logger from '../util/logger';
+// tslint:disable-next-line
 import Block from './block';
 
 export default class Blockchain {
