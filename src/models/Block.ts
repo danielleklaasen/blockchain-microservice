@@ -7,10 +7,10 @@ export default class Block  {
 
   constructor() {
     this.index = 0; // position of the block inside the blockchain
-    this.previousHash = ''; // starting value empty
+    this.previousHash = '';
     this.hash = '';
     this.nonce = 0;
-    this.transactions = []; // can have a list of transactions
+    this.transactions = [];
   }
 
   get key() {

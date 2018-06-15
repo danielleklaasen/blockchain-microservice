@@ -6,15 +6,23 @@ import Block from './block';
 
 export default class Blockchain {
   public blocks: IBlock[];
+  public currentTransactions: string[];
+
   constructor(genesisBlock) { // genesisBlock = first block
+    this.currentTransactions = [];
     this.blocks = [];
     this.addBlock(genesisBlock);
   }
 
+  public newTransaction(data) {
+    const transaction = JSON.stringify(data);
+    this.currentTransactions.push(transaction);
+  }
+
   public addBlock(block) {
-    if (this.blocks.length === 0) {
-      block.previousHash = '0000000000000000'; // there is no previous hash
-      block.hash = this.generateHash(block); // based on the block key it will generate a hash
+    if (this.blocks.length === 0) { // genesis block
+      block.previousHash = '0000000000000000';
+      block.hash = this.generateHash(block);
     }
 
     this.blocks.push(block);
@@ -23,11 +31,10 @@ export default class Blockchain {
   public getNextBlock(transactions) { // mining
     const block = new Block();
 
-    transactions.forEach((transaction) => {
+    this.currentTransactions.forEach((transaction) => {
       block.addTransaction(transaction);
     });
 
-    // serious perfomance issue here if blocks are big. ONLY REQUEST HASHprevi
     const previousBlock = this.getPreviousBlock();
 
     block.index = this.blocks.length;
@@ -42,17 +49,6 @@ export default class Blockchain {
   }
 
   private generateHash(block) {
-    let hash = sha256(block.key); // hashing the key
-
-    // proof of work
-    while (!hash.startsWith('000')) {
-      // now you need computational power to find one.
-      // in an actual blockchain you would work with maybe 15 0's
-      block.nonce += 1;
-      hash = sha256(block.key);
-      logger.info(hash);
-    }
-
-    return hash;
+    return sha256(block.key);
   }
 }
